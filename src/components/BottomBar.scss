@@ -1,0 +1,42 @@
+.nav-bottombar {
+    width: 100vw;
+    background-color: #fff;
+    border-top: 1px solid #e6e6e6;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+  
+    .section-links-wrapper{
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      
+      a{
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          border-radius: 15px;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          .icon{
+              width: 20px;
+              height: 20px;
+              color: #383737;
+          }
+      }
+      .active{
+        .icon{
+            color: #93c3ff;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 400px) { 
+    .nav-bottombar {
+      display: none;
+    }
+  }

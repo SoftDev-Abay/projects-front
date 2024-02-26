@@ -1,0 +1,47 @@
+.subtasks-list {
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.subtask-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: #636363;
+  }
+  input {
+    border: none;
+    outline: none;
+    font-weight: normal;
+    font-size: large;
+    width: 100%;
+  }
+  &:hover .subtask-del {
+    opacity: 1;
+  }
+  .subtask-del {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7e7d7d;
+    opacity: 0;
+    transform: opacity 0.3s ease;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

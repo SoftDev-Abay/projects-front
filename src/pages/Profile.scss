@@ -1,0 +1,107 @@
+.profile-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .profile-container {
+    flex-grow: 1;
+    h1 {
+      font-size: 25px;
+      font-weight: 600;
+      margin-top: 0px;
+      text-align: left;
+    }
+    .body-wrapper {
+      margin-top: 80px;
+      display: flex;
+      // justify-content: space-between;
+      color: #3a3a3a;
+
+      gap: 80px;
+      .picture-settings {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          border-radius: 50%;
+          width: 250px;
+          height: 250px;
+        }
+        .edit-image-wrapper {
+          position: relative;
+          p {
+            margin-top: 30px;
+            cursor: pointer;
+            font-size: 19px;
+            font-weight: 450;
+          }
+          input {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+          }
+        }
+      }
+      form {
+        flex-grow: 1;
+        margin-top: 20px;
+        display: flex;
+
+        flex-direction: column;
+        //   width: 80%;
+        label {
+          font-size: 20px;
+        }
+        input {
+          margin: 15px 0px;
+          outline: none;
+          border: none;
+          border-bottom: 2.5px solid rgb(219, 219, 219);
+          font-size: 19px;
+          padding: 5px;
+        }
+        .buttons-footer {
+          margin-top: 40px;
+          display: flex;
+          justify-content: end;
+          gap: 10px;
+          button {
+            border-radius: 5px;
+            color: #80bbff;
+            border: 1px solid #80bbff;
+            font-size: 18px;
+            background-color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            width: 50%;
+          }
+          .save-button {
+            background: #80bbff;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 756px) {
+  .profile-container .body-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .profile-container .body-wrapper .picture-settings img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-container .body-wrapper form {
+    min-width: 0px;
+  }
+}

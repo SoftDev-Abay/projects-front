@@ -1,0 +1,44 @@
+.attachment-item {
+  position: relative;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #ececec;
+
+  padding: 10px;
+  border-radius: 10px;
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 40px;
+  }
+  .attachment-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #696969;
+    p {
+      margin: 0;
+    }
+  }
+  &:hover .attachment-item-del {
+    opacity: 1;
+  }
+  .attachment-item-del {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    color: #7e7d7d;
+    opacity: 0;
+    transform: opacity 0.3s ease;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

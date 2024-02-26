@@ -1,0 +1,139 @@
+.chats-modal {
+  * {
+    box-sizing: border-box;
+  }
+  .modal,
+  .modal-box {
+    z-index: 90000;
+  }
+
+  .modal-sandbox {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+  }
+
+  .modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+  }
+
+  .modal-box {
+    position: relative;
+    width: 30%;
+    min-width: 400px;
+    max-width: 520px;
+    background: #fff;
+    margin: 100px auto;
+    animation-name: modalbox;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0, 0, 0.3, 1.6);
+    .modal-body {
+      padding: 20px 0px;
+
+      header {
+        padding: 0 20px;
+        input {
+          width: 100%;
+          padding: 12px 10px;
+          border: none;
+          border-bottom: solid 1px #ccc;
+          outline: none;
+          color: #444343;
+          font-size: 1.3rem;
+          background: #e2e2e2;
+          border-radius: 10px;
+          &::placeholder {
+            color: #686767;
+          }
+        }
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        .active-chat-item {
+          background-color: #419fd9;
+          &:hover {
+            background-color: #419fd9;
+          }
+          .chat-info {
+            .user-name {
+              color: #fff;
+            }
+            .message {
+              color: #fff;
+            }
+          }
+        }
+        li {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 15px;
+          padding: 15px 10px;
+
+          &:hover {
+            background-color: #f1f0f0;
+            cursor: pointer;
+          }
+          img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+          }
+          .chat-info {
+            .user-name {
+              font-size: 1.2rem;
+              color: #444343;
+              font-weight: 600;
+              margin-bottom: 10px;
+            }
+            .message {
+              font-size: 1rem;
+              color: #9b9999;
+            }
+          }
+        }
+      }
+      .global-search-indicator {
+        background: #f1f0f0;
+        padding: 15px 0;
+        color: #7a7979;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    }
+  }
+  @-webkit-keyframes modalbox {
+    0% {
+      top: -250px;
+      opacity: 0;
+    }
+    100% {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes modalbox {
+    0% {
+      top: -250px;
+      opacity: 0;
+    }
+    100% {
+      top: 0;
+      opacity: 1;
+    }
+  }
+}

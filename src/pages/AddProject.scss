@@ -1,0 +1,124 @@
+.addproject-section {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 0px;
+  }
+  form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .members-add {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr;
+      grid-column-gap: 20px;
+      grid-row-gap: 10px;
+      margin-bottom: 20px;
+      .button-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: large;
+      }
+      label {
+        font-size: 20px;
+
+        // color: #ccc;
+      }
+    }
+    .members-show {
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      position: relative;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #e0e0e0;
+        cursor: pointer;
+      }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      label {
+        margin-bottom: 10px;
+        font-size: 20px;
+        // color: #ccc;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: large;
+      }
+      textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: large;
+      }
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: large;
+      }
+    }
+
+    .add-banner-img {
+      .title {
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        grid-column-gap: 20px;
+        margin-bottom: 20px;
+
+        input {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          outline: none;
+          font-size: large;
+        }
+      }
+      .banner-imgs {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        img {
+          width: 400px;
+          height: 200px;
+          border-radius: 5px;
+          border: 2px solid #ccc;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .btn-submit {
+      margin-top: 20px;
+      width: fit-content;
+    }
+  }
+}
