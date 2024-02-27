@@ -15,7 +15,7 @@ const Jobs = () => {
       const industry = industryRef.current.value;
 
       const responce = await axiosPrivate.get(
-        `http://localhost:5555/jobs?geo=${location}&industry=${industry}`
+        `https://projects-backend-mldr.onrender.com/jobs?geo=${location}&industry=${industry}`
       );
 
       setJobs(responce.data.jobs);

@@ -19,14 +19,17 @@ const Login = () => {
     e.preventDefault();
     const email = emailLoginRef.current.value;
     const password = passwordLoginRef.current.value;
-    const responce = await fetch("http://localhost:5555/users/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_email: email,
-        user_password: password,
-      }),
-    });
+    const responce = await fetch(
+      "https://projects-backend-mldr.onrender.com/users/auth",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_email: email,
+          user_password: password,
+        }),
+      }
+    );
     if (responce.status != 200) {
       alert("User not found");
     } else {
@@ -52,16 +55,19 @@ const Login = () => {
     if (err !== "true") {
       alert(err);
     } else {
-      const responce = await fetch("http://localhost:5555/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_email: email,
-          username: username,
-          user_password: password,
-          admin: "false",
-        }),
-      });
+      const responce = await fetch(
+        "https://projects-backend-mldr.onrender.com/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_email: email,
+            username: username,
+            user_password: password,
+            admin: "false",
+          }),
+        }
+      );
       if (responce.status === 201) {
         alert("Register success");
         navigate("/login");

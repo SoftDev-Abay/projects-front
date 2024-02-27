@@ -18,7 +18,7 @@ const Profile = () => {
     formData.append("currentPassword", currentPasswordRef.current.value);
     formData.append("newPassword", newPasswordRef.current.value);
     const res = await axios.put(
-      `http://localhost:5555/users/${user._id}`,
+      `https://projects-backend-mldr.onrender.com/users/${user._id}`,
       formData,
       {
         headers: {
@@ -59,7 +59,7 @@ const Profile = () => {
               src={
                 avatar
                   ? URL.createObjectURL(avatar)
-                  : `http://localhost:5555/images/${user.avatar_name}`
+                  : `https://projects-backend-mldr.onrender.com/images/${user.avatar_name}`
               }
               alt=""
             />

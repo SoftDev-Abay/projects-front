@@ -31,7 +31,7 @@ const RightSidebar = () => {
             <img
               src={
                 user.avatar_name != null
-                  ? `http://localhost:5555/images/${user.avatar_name}`
+                  ? `https://projects-backend-mldr.onrender.com/images/${user.avatar_name}`
                   : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
               }
               alt=""

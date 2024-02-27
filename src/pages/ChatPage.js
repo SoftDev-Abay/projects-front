@@ -6,7 +6,7 @@ import socketIO from "socket.io-client";
 import { axiosPrivate } from "../api/axios";
 import "./ChatPage.scss";
 
-const socket = socketIO.connect("http://localhost:5555");
+const socket = socketIO.connect("https://projects-backend-mldr.onrender.com");
 
 const ChatPage = () => {
   const [activeChat, setActiveChat] = useState(null);
@@ -37,7 +37,7 @@ const ChatPage = () => {
   const getMessages = async () => {
     try {
       const response = await axiosPrivate.post(
-        "http://localhost:5555/chats/messages",
+        "https://projects-backend-mldr.onrender.com/chats/messages",
         {
           body: JSON.stringify({ chatID: activeChat._id, userID: user._id }),
           headers: { "Content-Type": "application/json" },
@@ -216,7 +216,7 @@ const ChatPage = () => {
                 <img
                   src={
                     activeChat.members[0].avatar_name != null
-                      ? `http://localhost:5555/images/${activeChat.members[0].avatar_name}`
+                      ? `https://projects-backend-mldr.onrender.com/images/${activeChat.members[0].avatar_name}`
                       : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
                   }
                   alt=""

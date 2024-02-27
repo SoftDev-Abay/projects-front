@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:5555";
+const BASE_URL = "https://projects-backend-mldr.onrender.com";
 
 // Public axios instance
 export const axiosInstance = axios.create({

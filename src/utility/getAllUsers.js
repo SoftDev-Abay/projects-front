@@ -2,7 +2,9 @@ import { axiosInstance } from "../api/axios";
 
 export const getAllUsers = async () => {
   try {
-    const response = await axiosInstance("http://localhost:5555/users");
+    const response = await axiosInstance(
+      "https://projects-backend-mldr.onrender.com/users"
+    );
 
     const data = await response.data;
     return data;

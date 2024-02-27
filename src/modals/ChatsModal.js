@@ -62,7 +62,7 @@ const ChatsModal = ({ modalHandlier, setChat, activeChatId, userChats }) => {
                     <img
                       src={
                         chat.members[0].avatar_name != null
-                          ? `http://localhost:5555/images/${chat.members[0].avatar_name}`
+                          ? `https://projects-backend-mldr.onrender.com/images/${chat.members[0].avatar_name}`
                           : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
                       }
                       alt=""
@@ -105,7 +105,7 @@ const ChatsModal = ({ modalHandlier, setChat, activeChatId, userChats }) => {
                     <img
                       src={
                         userIterator.avatar_name != null
-                          ? `http://localhost:5555/images/${userIterator.avatar_name}`
+                          ? `https://projects-backend-mldr.onrender.com/images/${userIterator.avatar_name}`
                           : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
                       }
                       alt=""
