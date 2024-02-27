@@ -4,6 +4,8 @@ import { FaPlus } from "react-icons/fa";
 import { getAllUsers } from "../utility/getAllUsers";
 import { axiosPrivate } from "../api/axios";
 import Carousel from "../components/Carousel";
+import { useTranslation } from "react-i18next";
+
 const AddProject = () => {
   const [members, setMembers] = useState([]);
   const memberRoleSelect = useRef(null);
@@ -92,18 +94,22 @@ const AddProject = () => {
     }
   };
 
-  console.log(bannerImgUrls);
+  const { t } = useTranslation("global");
 
   return (
     <section className="addproject-section">
-      <h3>Create new project</h3>
+      <h3>{t("addProject.header")}</h3>
       <form onSubmit={(e) => onAddProjectSubmit(e)}>
         <div className="form-group">
-          <label htmlFor="project-name">Project name</label>
+          <label htmlFor="project-name">
+            {t("addProject.form.projectName")}
+          </label>
           <input required type="text" id="project-name" ref={nameRef} />
         </div>
         <div className="form-group">
-          <label htmlFor="project-description">Project description</label>
+          <label htmlFor="project-description">
+            {t("addProject.form.description")}
+          </label>
           <textarea
             name=""
             id="project-description"
@@ -113,11 +119,11 @@ const AddProject = () => {
           ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="deadline">Due date:</label>
+          <label htmlFor="deadline">{t("addProject.form.deadline")}</label>
           <input required type="date" id="deadline" ref={date_dueRef} />
         </div>
         <div className="form-group">
-          <label htmlFor="category">Project category:</label>
+          <label htmlFor="category">{t("addProject.form.category")}</label>
           <select name="" id="category" ref={categoryRef}>
             <option value="web">Web</option>
             <option value="mobile">Mobile</option>
@@ -126,8 +132,10 @@ const AddProject = () => {
           </select>
         </div>
         <div className="members-add">
-          <label htmlFor="project-members">Assign to:</label>
-          <label htmlFor="project-members">Role:</label>
+          <label htmlFor="project-members">
+            {t("addProject.form.assignTo")}
+          </label>
+          <label htmlFor="project-members">{t("addProject.form.role")}</label>
           <label htmlFor="project-members"></label>
           <select ref={memberSelect}>
             {users.map((user) => (
@@ -161,7 +169,7 @@ const AddProject = () => {
           })}
         </div>
         <div className="add-banner-img">
-          <p className="title">Add banner image:</p>
+          <p className="title">{t("addProject.form.addBanner")}</p>
           <div className="controls">
             <input type="text" placeholder="Link to img" ref={bannerImgRef} />
             <button
@@ -199,7 +207,7 @@ const AddProject = () => {
         </div>
 
         <button type="submit" className="btn btn-submit">
-          Add project
+          {t("addProject.form.submit")}
         </button>
       </form>
     </section>

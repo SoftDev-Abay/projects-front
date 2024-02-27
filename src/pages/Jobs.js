@@ -3,7 +3,9 @@ import JobBox from "../components/JobBox";
 import { jobIndustry, jobLocations } from "../assets/index";
 import { axiosPrivate } from "../api/axios";
 import "./Jobs.scss";
+import { useTranslation } from "react-i18next";
 const Jobs = () => {
+  const { t } = useTranslation("global");
   const [jobs, setJobs] = useState([]);
 
   const locationRef = useRef();
@@ -32,10 +34,10 @@ const Jobs = () => {
   return (
     <section className="section-jobs">
       <div className="section-jobs_header">
-        <h1>Featured Jobs</h1>
+        <h1>{t("jobs.header")}</h1>
         <div className="controls">
           <div className="filter">
-            <p>Filter by:</p>
+            <p>{t("jobs.filter.title")}:</p>
             <div className="filter-items">
               <select ref={locationRef}>
                 {jobLocations.map((location) => (
@@ -54,7 +56,7 @@ const Jobs = () => {
             </div>
           </div>
           <button className="btn btn-primary" onClick={fetchJobs}>
-            Apply
+            {t("jobs.buttons.apply")}
           </button>
         </div>
       </div>

@@ -1,0 +1,21 @@
+.toggle-container {
+  position: fixed;
+  right: 3rem;
+  z-index: 50;
+  bottom: 15px;
+}
+
+.language-toggle {
+  display: flex;
+  padding: 10px 25px;
+  border-radius: 5px;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #d3d3d3;
+  color: #494949;
+}
+.language-text {
+  font-weight: 600;
+}

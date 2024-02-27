@@ -3,9 +3,10 @@ import "./Headlines.scss";
 import { headlinesCategories, headlinesCountries } from "../assets/index";
 import { axiosPrivate } from "../api/axios";
 import HeadlineCard from "../components/HeadlineCard";
+import { useTranslation } from "react-i18next";
 const Headlines = () => {
   const [headlines, setHeadlines] = useState([]);
-
+  const { t } = useTranslation("global");
   const fetchHeadlines = async () => {
     try {
       const country = countryRef.current.value;
@@ -28,10 +29,10 @@ const Headlines = () => {
   return (
     <section className="section-headlines">
       <div className="section-headlines_header">
-        <h1>Headlines</h1>
+        <h1>{t("headlines.header")}</h1>
         <div className="controls">
           <div className="filter">
-            <p>Filter by:</p>
+            <p>{t("headlines.filter.title")}:</p>
             <div className="filter-items">
               <select ref={countryRef}>
                 {headlinesCountries.map((country) => (
@@ -50,7 +51,7 @@ const Headlines = () => {
             </div>
           </div>
           <button className="btn btn-primary" onClick={fetchHeadlines}>
-            Apply
+            {t("headlines.buttons.apply")}
           </button>
         </div>
       </div>

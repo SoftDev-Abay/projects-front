@@ -3,11 +3,11 @@ import TaskCard from "./TaskCard";
 import { FaEllipsisH } from "react-icons/fa";
 import { Droppable } from "react-beautiful-dnd";
 
-const TasksColumn = ({ status, tasks, id, modalHandlier }) => {
+const TasksColumn = ({ status, title, tasks, id, modalHandlier }) => {
   return (
     <div className="tasks-ready-container">
       <div className="tasks-subtitle">
-        <p>{status}</p>
+        <p>{title}</p>
         <FaEllipsisH className="icon" />
       </div>
       <Droppable droppableId={id}>

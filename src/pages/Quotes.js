@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import "./Quotes.scss";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { axiosPrivate } from "../api/axios";
+import { useTranslation } from "react-i18next";
 const Quotes = () => {
   const [joke, setJoke] = useState("");
   const [quote, setQuote] = useState("");
+
+  const { t } = useTranslation("global");
 
   const fetchJoke = async () => {
     try {
@@ -34,13 +37,13 @@ const Quotes = () => {
   return (
     <section className="section-quotes">
       <div className="section-quotes_header">
-        <h1>Quotes</h1>
+        <h1>{t("quotes.header")}</h1>
       </div>
 
       <div className="section-quotes_content">
         <div className="joke_card" onClick={fetchJoke}>
           <header>
-            <h2>Dev Joke of the Day</h2>
+            <h2>{t("quotes.jokeCard.header")}</h2>
           </header>
           <div className="body">
             <p className="setup">{joke.setup}</p>
@@ -48,13 +51,13 @@ const Quotes = () => {
             <p className="delivery">{joke.delivery}</p>
           </div>
           <div className="indicator">
-            <p>Click to see another joke</p>
+            <p>{t("quotes.jokeCard.indicator")}</p>
           </div>
         </div>
         <div className="quote_card" onClick={fetchQuote}>
           <header>
             <FaQuoteLeft />
-            <h2>Inspirational Quote</h2>
+            <h2>{t("quotes.quoteCard.header")}</h2>
             <FaQuoteRight />
           </header>
           <div className="body">
@@ -62,7 +65,7 @@ const Quotes = () => {
             <p className="author">— {quote.author}</p>
           </div>
           <div className="indicator">
-            <p>Click to see another joke</p>
+            <p>{t("quotes.quoteCard.indicator")}</p>
           </div>
         </div>
       </div>

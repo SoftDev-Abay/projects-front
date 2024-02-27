@@ -5,6 +5,7 @@ import RightSidebar from "./RightSidebar";
 import BottomBar from "./BottomBar";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import LanguageToggle from "./LanguageToggle";
 const Layout = () => {
   const navigate = useNavigate();
   const currentPath = window.location.pathname;
@@ -38,6 +39,7 @@ const Layout = () => {
             }
           >
             <Outlet />
+            <LanguageToggle />
           </div>
           <BottomBar />
         </section>

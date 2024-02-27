@@ -1,6 +1,8 @@
 import React from "react";
 import "./HeadlineCard.scss";
+import { useTranslation } from "react-i18next";
 const HeadlineCard = ({ article }) => {
+  const { t } = useTranslation("global");
   return (
     <div className="headline-card">
       <div className="card m-2" style={{ width: "18rem" }} key={article.title}>
@@ -14,12 +16,13 @@ const HeadlineCard = ({ article }) => {
           <p className="card-text">{article.description}</p>
           <p className="card-text">
             <small className="text-muted">
-              Author: {article.author || "Unknown"}
+              {t("headlines.headlineCard.author")} {article.author || "Unknown"}
             </small>
           </p>
           <p className="card-text">
             <small className="text-muted">
-              Published: {new Date(article.publishedAt).toLocaleString()}
+              {t("headlines.headlineCard.published")}
+              {new Date(article.publishedAt).toLocaleString()}
             </small>
           </p>
         </div>
@@ -30,7 +33,7 @@ const HeadlineCard = ({ article }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read more
+            {t("headlines.headlineCard.indicator")}
           </a>
         </div>
       </div>

@@ -11,9 +11,50 @@ import {
   FaNewspaper,
 } from "react-icons/fa";
 import { useAuthContext } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
+
 const LeftSidebar = (props) => {
+  const { t } = useTranslation("global");
+
   const pathname = window.location.pathname; // returns the path of the current page
   const { user } = useAuthContext();
+
+  const links = [
+    {
+      to: "/",
+      icon: <FaTable className="icon" />,
+    },
+    {
+      to: "/add-project",
+      icon: <FaPlus className="icon" />,
+    },
+    {
+      to: "/tasks",
+      icon: <FaTasks className="icon" />,
+    },
+    {
+      to: "/chat",
+      icon: <FaComment className="icon" />,
+    },
+    {
+      to: "/jobs",
+      icon: <FaBriefcase className="icon" />,
+    },
+    {
+      to: "/quotes",
+      icon: <FaQuoteLeft className="icon" />,
+    },
+    {
+      to: "/headlines",
+      icon: <FaNewspaper className="icon" />,
+    },
+    {
+      to: "/profile",
+      icon: <FaUser className="icon" />,
+    },
+  ];
+
+  const linksLabels = t("sidebar", { returnObjects: true });
 
   return (
     <nav className="nav-leftsidebar">
@@ -29,39 +70,16 @@ const LeftSidebar = (props) => {
         <span>{user.username}</span>
       </div>
       <div className="section-links-wrapper">
-        <a href="/" className={pathname === "/" ? "active" : ""}>
-          <FaTable className="icon" /> <span>Dashboard</span>
-        </a>
-        <a
-          href="/add-project"
-          className={pathname === "/add-project" ? "active" : ""}
-        >
-          <FaPlus className="icon" />
-          <span>Add Project</span>
-        </a>
-        <a href="tasks" className={pathname === "/tasks" ? "active" : ""}>
-          <FaTasks className="icon" /> <span>Tasks</span>
-        </a>
-        <a href="chat" className={pathname === "/chat" ? "active" : ""}>
-          <FaComment className="icon" /> <span>Chat</span>
-        </a>
-
-        <a href="jobs" className={pathname === "/jobs" ? "active" : ""}>
-          <FaBriefcase className="icon" /> <span>Jobs</span>
-        </a>
-        <a href="quotes" className={pathname === "/quotes" ? "active" : ""}>
-          <FaQuoteLeft className="icon" /> <span>Quotes</span>
-        </a>
-
-        <a
-          href="headlines"
-          className={pathname === "/headlines" ? "active" : ""}
-        >
-          <FaNewspaper className="icon" /> <span>Headlines</span>
-        </a>
-        <a href="profile" className={pathname === "/profile" ? "active" : ""}>
-          <FaUser className="icon" /> <span>Profile</span>
-        </a>
+        {links.map((link, index) => (
+          <a
+            key={index + link.to}
+            href={link.to}
+            className={pathname === link.to ? "active" : ""}
+          >
+            {link.icon}
+            <span>{linksLabels[index].name}</span>
+          </a>
+        ))}
       </div>
     </nav>
   );

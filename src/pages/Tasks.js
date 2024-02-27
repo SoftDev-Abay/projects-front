@@ -10,9 +10,12 @@ import { useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import EditTaskModal from "../modals/EditTaskModal";
 import { axiosPrivate } from "../api/axios";
+import { useTranslation } from "react-i18next";
 
 const Tasks = () => {
   const { user } = useAuthContext();
+  const { t } = useTranslation("global");
+
   const [isOpenTaskModal, setIsOpenTaskModal] = useState(false);
   const [userTasks, setUserTasks] = useState([]);
 
@@ -191,24 +194,28 @@ const Tasks = () => {
           <div className="tasks-container">
             <TasksColumn
               status="Ready"
+              title={t("tasks.states.ready")}
               tasks={tasksReady}
               id="ready"
               modalHandlier={TaskModalHandlier}
             />
             <TasksColumn
               status="In progress"
+              title={t("tasks.states.inProgress")}
               tasks={tasksInProgress}
               id="in-progress"
               modalHandlier={TaskModalHandlier}
             />
             <TasksColumn
               status="Review"
+              title={t("tasks.states.review")}
               tasks={tasksNeedsReview}
               id="needs-review"
               modalHandlier={TaskModalHandlier}
             />
             <TasksColumn
               status="Done"
+              title={t("tasks.states.done")}
               tasks={tasksDone}
               id="done"
               modalHandlier={TaskModalHandlier}

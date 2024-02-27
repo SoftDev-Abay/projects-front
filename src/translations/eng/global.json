@@ -1,4 +1,7 @@
 {
+  "topbar": {
+    "logout": "Logout"
+  },
   "sidebar": [
     {
       "name": "Dashboard"
@@ -30,23 +33,27 @@
       "title": "Filter by:"
     }
   },
+  "attachmentSpace": {
+    "indicator": "Click to add / drop your files here"
+  },
   "addProject": {
     "header": "Add Project",
     "form": {
       "projectName": "Project name",
       "description": "Project description",
-      "dueDate": "Due date:",
+      "deadline": "Due date:",
       "category": "Project category:",
       "assignTo": "Assign to:",
-      "baner": "Add banner image:",
-      "submit": "Submit"
+      "role": "Role:",
+      "addBanner": "Add banner image:",
+      "submit": "Add project"
     }
   },
   "tasks": {
     "header": "Tasks",
     "states": {
       "ready": "Ready",
-      "progress": "In progress",
+      "inProgress": "In progress",
       "review": "Review",
       "done": "Done"
     },
@@ -62,8 +69,59 @@
         "edit": "Edit",
         "delete": "Delete",
         "close": "Close",
-        "update": "Update"
+        "update": "Update",
+        "upload": "Upload"
       }
+    }
+  },
+  "jobs": {
+    "header": "Featured Jobs",
+    "filter": {
+      "title": "Filter by:"
+    },
+    "buttons": {
+      "apply": "Apply"
+    },
+    "jobCard": {
+      "salary": "Salary"
+    }
+  },
+  "quotes": {
+    "header": "Quotes",
+    "jokeCard": {
+      "header": "Joke of the day",
+      "indicator": "Click to see another joke"
+    },
+    "quoteCard": {
+      "header": "Inspirational Quote",
+      "indicator": "Click to see another quote"
+    }
+  },
+  "headlines": {
+    "header": "Headlines",
+    "filter": {
+      "title": "Filter by:"
+    },
+    "buttons": {
+      "apply": "Apply"
+    },
+    "headlineCard": {
+      "author": "Author: ",
+      "published": "Published: ",
+      "indicator": "Read more"
+    }
+  },
+  "profile": {
+    "header": "Profile Settings",
+    "form": {
+      "fullName": "Full Name",
+      "userName": "User name",
+      "email": "Email",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "editPicture": "Edit picture",
+      "submit": "Save changes",
+      "cancel": "Cancel"
     }
   }
 }

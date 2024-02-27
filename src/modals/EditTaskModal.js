@@ -17,8 +17,9 @@ import { ImageConfig } from "../config/ImageConfig";
 import { getAllUsers } from "../utility/getAllUsers";
 import { useAuthContext } from "../context/AuthContext";
 import AttachmentsAddSpace from "../components/AttachmentsAddSpace";
-
+import { useTranslation } from "react-i18next";
 const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
+  const { t } = useTranslation("global");
   const [subtasks, setSubtasks] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [deletedFilesList, setDeletedFilesList] = useState([]); //
@@ -179,7 +180,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                 <input
                   className="title-input"
                   type="text"
-                  placeholder="Title"
+                  placeholder={t("tasks.taskModal.sections.title")}
                   ref={taskTitle}
                 />
               </div>
@@ -221,7 +222,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                 ></textarea>
                 <div className="members-container">
                   <div className="members-header">
-                    <h3>Members </h3>
+                    <h3>{t("tasks.taskModal.sections.members")}</h3>
                     <select
                       className="add-member-select"
                       name=""
@@ -283,7 +284,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
 
                 <br />
                 <div className="subtasks-container">
-                  <h3>Subtasks</h3>
+                  <h3>{t("tasks.taskModal.sections.subtasks")}</h3>
                   <div className="subtasks-list">
                     <li className="subtask-item">
                       <FiCircle className="icon" />
@@ -349,7 +350,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                   </div>
                 </div>
                 <div className="task-modal-attachments">
-                  <h3>Attachments</h3>
+                  <h3>{t("tasks.taskModal.sections.attachments")}</h3>
                   <div className="attachments-list">
                     {/* previous attachments */}
                     {initialFileList?.map((item, index) => {
@@ -428,7 +429,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                       modalHandlier(false);
                     }}
                   >
-                    Close
+                    {t("tasks.taskModal.buttons.close")}
                   </button>
                   <div>
                     <button
@@ -439,7 +440,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                         modalHandlier(false);
                       }}
                     >
-                      Delete
+                      {t("tasks.taskModal.buttons.delete")}
                     </button>
                     <button
                       className="modal-button"
@@ -448,7 +449,7 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                         // modalHandlier(false);
                       }}
                     >
-                      Update
+                      {t("tasks.taskModal.buttons.update")}
                     </button>
                   </div>
                 </div>

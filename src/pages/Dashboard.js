@@ -3,6 +3,7 @@ import "./Dashboard.scss";
 import ProjectCard from "../components/ProjectCard";
 import { useAuthContext } from "../context/AuthContext";
 import { axiosPrivate } from "../api/axios";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = ({ modalHandlier }) => {
   const { user } = useAuthContext();
@@ -28,12 +29,12 @@ const Dashboard = ({ modalHandlier }) => {
     setCategories(allCategories);
   }, [userProjects]);
 
-  console.log(userProjects);
+  const { t } = useTranslation("global");
 
   return (
     <section className="section-dashboard">
       <div className="filter-container">
-        <span className="title">Filter by:</span>
+        <span className="title">{t("dashboard.filter.title")}</span>
         <div className="filter-items-wrapper">
           <span
             className="filter-item"

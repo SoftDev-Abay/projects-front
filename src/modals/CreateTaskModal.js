@@ -16,8 +16,10 @@ import { FiCheckCircle, FiCircle } from "react-icons/fi";
 import { ImageConfig } from "../config/ImageConfig";
 import { getAllUsers } from "../utility/getAllUsers";
 import { useAuthContext } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const CreateTaskModal = ({ isOpen, modalHandlier }) => {
+  const { t } = useTranslation("global");
   const [subtasks, setSubtasks] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [projectName, setProjectName] = useState("");
@@ -126,7 +128,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
                 <input
                   className="title-input"
                   type="text"
-                  placeholder="Title"
+                  placeholder={t("tasks.taskModal.sections.title")}
                   ref={taskTitle}
                 />
               </div>
@@ -234,7 +236,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
 
                 <br />
                 <div className="subtasks-container">
-                  <h3>Subtasks</h3>
+                  <h3>{t("tasks.taskModal.sections.subtasks")}</h3>
                   <div className="subtasks-list">
                     <li className="subtask-item">
                       <FiCircle className="icon" />
@@ -300,7 +302,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
                   </div>
                 </div>
                 <div className="task-modal-attachments">
-                  <h3>Attachments</h3>
+                  <h3>{t("tasks.taskModal.sections.attachments")}</h3>
                   <div className="attachments-list">
                     {fileList?.map((item, index) => {
                       return (
@@ -334,7 +336,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
                     className="drop-file-input"
                   >
                     <div className="drop-file-input_label">
-                      <p>Click to add / drop your files here</p>
+                      <p>{t("attachmentSpace.indicator")}</p>
                     </div>
                     <input type="file" value="" onChange={onFileDrop} />
                   </div>
@@ -346,7 +348,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
                       modalHandlier(false);
                     }}
                   >
-                    Close
+                    {t("tasks.taskModal.buttons.close")}
                   </button>
                   <button
                     className="modal-button"
@@ -355,7 +357,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
                       modalHandlier(false);
                     }}
                   >
-                    Upload
+                    {t("tasks.taskModal.buttons.upload")}
                   </button>
                 </div>
               </div>
