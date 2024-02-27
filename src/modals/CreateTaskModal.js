@@ -11,7 +11,7 @@ import {
   FaPlusCircle,
   FaCheckCircle,
 } from "react-icons/fa";
-import axios from "axios";
+import { axiosPrivate } from "../api/axios";
 import { FiCheckCircle, FiCircle } from "react-icons/fi";
 import { ImageConfig } from "../config/ImageConfig";
 import { getAllUsers } from "../utility/getAllUsers";
@@ -38,10 +38,8 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
 
   const getUserProjects = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5555/projects/user/${user._id}`
-      );
-      const data = await response.json();
+      const response = await axiosPrivate(`/projects/user/${user._id}`);
+      const data = await response.data;
       setUserProjects(data);
     } catch (error) {
       console.error(error);
@@ -99,7 +97,7 @@ const CreateTaskModal = ({ isOpen, modalHandlier }) => {
 
     formData.append("ownerID", user._id);
 
-    const result = await axios.post("http://localhost:5555/task", formData, {
+    const result = await axiosPrivate.post("/task", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import "./Login.scss";
 const Login = () => {
-  const { user, setUser } = useAuthContext();
+  const { user, setUser, setToken } = useAuthContext();
   const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState("login");
 
@@ -27,12 +27,17 @@ const Login = () => {
         user_password: password,
       }),
     });
-    if (responce.status === 404) {
+    if (responce.status === 404 && responce.status === 404) {
       alert("User not found");
-    } else {
+    } else if (responce.status === 200) {
       const json_responce = await responce.json();
-      setUser(json_responce);
-      localStorage.setItem("user", JSON.stringify(json_responce));
+      setUser(json_responce.user);
+      localStorage.setItem("user", JSON.stringify(json_responce.user));
+      localStorage.setItem(
+        "access_token",
+        JSON.stringify(json_responce.accessToken)
+      );
+      setToken(json_responce.accessToken);
       navigate("/");
     }
   };

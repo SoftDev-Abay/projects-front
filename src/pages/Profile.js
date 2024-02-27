@@ -42,17 +42,9 @@ const Profile = () => {
             <label>Email </label>
             <input type="email" defaultValue={user.email} ref={emailRef} />
             <label>Current password </label>
-            <input
-              type="password"
-              ref={currentPasswordRef}
-              defaultValue={user.password}
-            />
+            <input type="password" ref={currentPasswordRef} />
             <label>New password </label>
-            <input
-              type="password"
-              ref={newPasswordRef}
-              defaultValue={user.password}
-            />
+            <input type="password" ref={newPasswordRef} />
             <div className="buttons-footer">
               <button className="" type="button">
                 Cancel

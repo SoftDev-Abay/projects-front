@@ -11,7 +11,7 @@ import {
   FaPlusCircle,
   FaCheckCircle,
 } from "react-icons/fa";
-import axios from "axios";
+import { axiosPrivate } from "../api/axios";
 import { FiCheckCircle, FiCircle } from "react-icons/fi";
 import { ImageConfig } from "../config/ImageConfig";
 import { getAllUsers } from "../utility/getAllUsers";
@@ -40,10 +40,8 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
 
   const getUserProjects = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5555/projects/user/${user._id}`
-      );
-      const data = await response.json();
+      const response = await axiosPrivate(`/projects/user/${user._id}`);
+      const data = await response.data;
       setUserProjects(data);
     } catch (error) {
       console.error(error);
@@ -52,8 +50,8 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
 
   const getTaskInfo = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5555/task/${isOpen._id}`);
-      const data = await res.json();
+      const res = await axiosPrivate(`/task/${isOpen._id}`);
+      const data = await res.data;
 
       setProjectName(data.project_name);
       setMembers(data.members.map((member) => member.username));
@@ -106,15 +104,11 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
 
       formData.append("unchangedFiles", JSON.stringify(initialFileList));
 
-      const responce = await axios.put(
-        `http://localhost:5555/task/${isOpen._id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const responce = await axiosPrivate.put(`/task/${isOpen._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log(responce);
 
@@ -125,6 +119,44 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
     } catch (error) {
       alert("Task update failed");
       console.error(error);
+    }
+  };
+
+  const downloadFile = async (file_name) => {
+    try {
+      // Specify responseType: 'blob' for this request only
+      const response = await axiosPrivate.get(`/attachments/${file_name}`, {
+        responseType: "blob",
+      });
+      // No need to check response.ok for Axios; errors will throw automatically
+
+      // Extract filename from the response if needed
+      const contentDisposition = response.headers["content-disposition"];
+      const filename = contentDisposition
+        ? contentDisposition.split("filename=")[1].replace(/["']/g, "")
+        : file_name;
+
+      // Handle the Blob data directly from response.data
+      const blob = new Blob([response.data], {
+        type: "application/octet-stream",
+      });
+
+      // Create a URL for the blob
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", filename); // Set the filename for the download
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean-up by revoking the object URL and removing the temporary link
+      window.URL.revokeObjectURL(downloadUrl);
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong!");
     }
   };
 
@@ -331,7 +363,10 @@ const EditTaskModal = ({ isOpen, modalHandlier, handleDeleteTask }) => {
                             alt=""
                           />
                           <div className="attachment-item-info">
-                            <p>
+                            <p
+                              onClick={() => downloadFile(item.file_name)}
+                              style={{ cursor: "pointer" }}
+                            >
                               {item.file_name.split(
                                 0,
                                 -(item.file_name.split(".")[1].length + 33)

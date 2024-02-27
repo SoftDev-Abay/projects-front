@@ -10,7 +10,9 @@ import Layout from "./components/Layout";
 import ChatPage from "./pages/ChatPage";
 import AuthContext from "./context/AuthContext";
 import Profile from "./pages/Profile";
-
+import Jobs from "./pages/Jobs";
+import Quotes from "./pages/Quotes";
+import Headlines from "./pages/Headlines";
 function App() {
   const [isOpenProjectModal, setIsOpenProjectModal] = useState(false);
   const ProjectModalHandlier = (value) => {
@@ -32,7 +34,9 @@ function App() {
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/quotes" element={<div>Quotes</div>} />
+              <Route path="/quotes" element={<Quotes />} />
+              <Route path="/jobs" element={<Jobs />} />
+              <Route path="/headlines" element={<Headlines />} />
             </Route>
 
             <Route

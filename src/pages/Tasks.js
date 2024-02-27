@@ -9,6 +9,7 @@ import TasksColumn from "../components/TasksColumn";
 import { useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import EditTaskModal from "../modals/EditTaskModal";
+import { axiosPrivate } from "../api/axios";
 
 const Tasks = () => {
   const { user } = useAuthContext();
@@ -50,8 +51,9 @@ const Tasks = () => {
 
   const fetchData = async () => {
     try {
-      const result = await fetch(`http://localhost:5555/task/user/${user._id}`);
-      const data = await result.json();
+      const result = await axiosPrivate(`/task/user/${user._id}`);
+      const data = await result.data;
+      console.log(data);
       await setUserTasks(data);
     } catch (error) {
       console.error(error);
@@ -60,18 +62,14 @@ const Tasks = () => {
 
   const updateTaskStatus = async (taskId, status) => {
     try {
-      const result = await fetch(
-        `http://localhost:5555/task/status/${taskId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ status }),
-        }
-      );
+      const result = await axiosPrivate.put(`/task/status/${taskId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      });
 
-      const data = await result.json();
+      const data = await result.data;
     } catch (error) {
       console.error(error);
     }
@@ -150,11 +148,9 @@ const Tasks = () => {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      const result = await fetch(`http://localhost:5555/task/${taskId}`, {
-        method: "DELETE",
-      });
+      const result = await axiosPrivate.delete(`/task/${taskId}`);
 
-      const data = await result.json();
+      const data = await result.data;
 
       fetchData();
     } catch (error) {

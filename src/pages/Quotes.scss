@@ -1,2 +1,128 @@
 .section-quotes {
+  .section-quotes_header {
+    margin-bottom: 100px;
+
+    h1 {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 0;
+    }
+  }
+
+  .section-quotes_content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 54px;
+    justify-content: space-between;
+    column-gap: 105px;
+    .indicator {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -50px;
+      p {
+        font-size: 16px;
+        font-weight: 500;
+        color: #a7a7a7;
+      }
+    }
+    .joke_card {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+      padding-bottom: 25px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      flex: 1 1 300px;
+      position: relative;
+
+      &:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header {
+        background-color: #e6e6e6;
+        padding: 12px 24px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        h2 {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 0;
+          text-align: center;
+        }
+      }
+      .body {
+        padding: 0 24px;
+
+        .setup {
+          font-size: 20px;
+          font-weight: 500;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+        .delivery {
+          font-size: 16px;
+          font-style: italic;
+
+          line-height: 0;
+          text-align: center;
+        }
+      }
+    }
+    .quote_card {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+      padding-bottom: 25px;
+      transition: all 0.3s ease;
+      flex: 1 1 300px;
+      cursor: pointer;
+      position: relative;
+
+      &:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header {
+        background-color: #e6e6e6;
+        padding: 12px 24px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 0;
+          text-align: center;
+        }
+      }
+      .body {
+        padding: 0 24px;
+        .quote {
+          font-size: 20px;
+          font-weight: 500;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+        .author {
+          font-size: 16px;
+          font-style: italic;
+
+          line-height: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

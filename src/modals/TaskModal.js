@@ -10,8 +10,7 @@ import {
   FaPaperclip,
   FaCheckCircle,
 } from "react-icons/fa";
-import Comments from "../components/Comments";
-import axios from "axios";
+import { axiosPrivate } from "../api/axios";
 import { FiCircle } from "react-icons/fi";
 import { ImageConfig } from "../config/ImageConfig";
 import { useEffect } from "react";
@@ -45,14 +44,46 @@ const TaskModal = ({ isOpen, modalHandlier }) => {
 
   const editTaskHandlier = async () => {
     try {
-      const res = await axios.put(
-        `http://localhost:5555/task/subtasks/${isOpen}`,
-        {
-          subtasks: changedSubtasks,
-        }
-      );
+      const res = await axiosPrivate.put(`task/subtasks/${isOpen}`, {
+        subtasks: changedSubtasks,
+      });
       alert("Task updated successfully!");
       modalHandlier(false);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong!");
+    }
+  };
+
+  const downloadFile = async (file_name) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5555/attachments/${file_name}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Retrieve the filename from Content-Disposition header
+      const contentDisposition = response.headers.get("Content-Disposition");
+      const filename = contentDisposition
+        ? contentDisposition.split("filename=")[1].replace(/["']/g, "")
+        : file_name;
+
+      // Blob() method to handle the binary data
+      const blob = await response.blob();
+
+      // Create a temporary link element and trigger the download
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", filename); // Set the filename for the download
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean-up by revoking the object URL and removing the temporary link
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl);
     } catch (error) {
       console.error(error);
       alert("Something went wrong!");
@@ -143,7 +174,10 @@ const TaskModal = ({ isOpen, modalHandlier }) => {
                               alt=""
                             />
                             <div className="attachment-item-info">
-                              <p>
+                              <p
+                                onClick={() => downloadFile(item.file_name)}
+                                style={{ cursor: "pointer" }}
+                              >
                                 {item.file_name.split(
                                   0,
                                   -(item.file_name.split(".")[1].length + 33)
@@ -157,7 +191,6 @@ const TaskModal = ({ isOpen, modalHandlier }) => {
                     </div>
                   </div>
                 )}
-                {/* <Comments /> */}
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >

@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import "./Dashboard.scss";
 import ProjectCard from "../components/ProjectCard";
 import { useAuthContext } from "../context/AuthContext";
+import { axiosPrivate } from "../api/axios";
 
 const Dashboard = ({ modalHandlier }) => {
   const { user } = useAuthContext();
@@ -10,10 +11,8 @@ const Dashboard = ({ modalHandlier }) => {
   const [currentFilterCategory, setCurrentFilterCategory] = useState("all");
   const getUserProjects = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5555/projects/user/${user._id}`
-      );
-      const data = await response.json();
+      const response = await axiosPrivate(`/projects/user/${user._id}`);
+      const data = await response.data;
       setUserProjects(data);
     } catch (error) {
       console.error(error);

@@ -1,0 +1,71 @@
+// ArticlesList.scss
+.headline-card {
+  flex: 1 1 200px;
+
+  .d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; // Adjust the gap between cards as needed
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18rem; // Adjust card width as necessary
+    margin: 10px; // Margin around cards
+    background-color: #fff; // Card background color
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Simple shadow for depth
+    border-radius: 8px; // Rounded corners for the card
+    overflow: hidden; // Ensures the content respects the border radius
+
+    .card-img-top {
+      width: 100%; // Ensure image covers the card width
+      height: 180px; // Adjust height as needed
+      object-fit: cover; // Ensures the image covers the area nicely
+    }
+
+    .card-body {
+      padding: 15px;
+
+      .card-title {
+        margin-bottom: 10px; // Space between title and description
+        font-size: 1.25rem; // Title font size
+        font-weight: bold; // Make title bold
+      }
+
+      .card-text {
+        font-size: 0.9rem; // Adjust text size as needed
+        margin-bottom: 10px; // Space between text elements
+
+        &:last-child {
+          margin-bottom: 0; // Removes margin from the last text element
+        }
+      }
+
+      small {
+        font-size: 0.8rem; // Small text size for meta data
+        color: #666; // Meta text color
+      }
+    }
+
+    .card-footer {
+      text-align: right;
+      padding: 10px 15px;
+      background-color: #f8f9fa; // Slightly different background for the footer
+      border-top: 1px solid #e7e7e7; // Separator line
+
+      a {
+        text-decoration: none; // Remove underline from links
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .card {
+      width: 100%; // Full width cards on smaller screens
+    }
+  }
+}

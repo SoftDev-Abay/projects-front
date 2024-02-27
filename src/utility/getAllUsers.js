@@ -1,8 +1,10 @@
+import { axiosInstance } from "../api/axios";
+
 export const getAllUsers = async () => {
   try {
-    const response = await fetch("http://localhost:5555/users");
+    const response = await axiosInstance("http://localhost:5555/users");
 
-    const data = await response.json();
+    const data = await response.data;
     return data;
   } catch (error) {
     console.error("Error fetching users:", error.message);

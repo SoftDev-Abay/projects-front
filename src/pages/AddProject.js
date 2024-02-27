@@ -2,7 +2,7 @@ import { React, useState, useRef, useEffect } from "react";
 import "./AddProject.scss";
 import { FaPlus } from "react-icons/fa";
 import { getAllUsers } from "../utility/getAllUsers";
-import axios from "axios";
+import { axiosPrivate } from "../api/axios";
 import Carousel from "../components/Carousel";
 const AddProject = () => {
   const [members, setMembers] = useState([]);
@@ -21,6 +21,7 @@ const AddProject = () => {
     const fetchUsers = async () => {
       try {
         const usersData = await getAllUsers();
+        console.log(usersData);
         setUsers(usersData);
       } catch (error) {
         console.error("Error fetching users:", error.message);
@@ -62,10 +63,9 @@ const AddProject = () => {
       return;
     }
 
-    const responce = await axios.post(
-      "http://localhost:5555/projects",
-      newProject
-    );
+    // const responce = await axiosPrivate.post("/projects", newProject);
+
+    const responce = await axiosPrivate.post("/projects", newProject);
 
     nameRef.current.value = "";
     descriptionRef.current.value = "";
