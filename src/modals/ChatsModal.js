@@ -24,16 +24,23 @@ const ChatsModal = ({ modalHandlier, setChat, activeChatId, userChats }) => {
 
   const createChat = async (users) => {
     console.log({ users: [...users, user.username] });
-    const responce = await axiosPrivate.post("/chats", {
-      body: JSON.stringify({ users: [...users, user.username] }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await responce.data;
-    setChat(data);
-    if (data) {
-      modalHandlier(false);
+    try {
+      const response = await axiosPrivate.post(
+        "/chats",
+        { users: [...users, user.username] }, // Data as the second argument
+        { headers: { "Content-Type": "application/json" } } // Configurations as the third argument
+      );
+      const data = response.data;
+      setChat(data);
+      if (data) {
+        modalHandlier(false);
+      }
+    } catch (error) {
+      console.error("Error creating chat:", error);
+      // Handle the error appropriately
     }
   };
+
   return (
     <div className="chats-modal">
       <div className="modal" onClick={() => modalHandlier(false)}>

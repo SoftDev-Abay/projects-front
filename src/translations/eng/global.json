@@ -1,0 +1,69 @@
+{
+  "sidebar": [
+    {
+      "name": "Dashboard"
+    },
+    {
+      "name": "Add Project"
+    },
+    {
+      "name": "Tasks"
+    },
+    {
+      "name": "Chat"
+    },
+    {
+      "name": "Jobs"
+    },
+    {
+      "name": "Quotes"
+    },
+    {
+      "name": "Headlines"
+    },
+    {
+      "name": "Profile"
+    }
+  ],
+  "dashboard": {
+    "filter": {
+      "title": "Filter by:"
+    }
+  },
+  "addProject": {
+    "header": "Add Project",
+    "form": {
+      "projectName": "Project name",
+      "description": "Project description",
+      "dueDate": "Due date:",
+      "category": "Project category:",
+      "assignTo": "Assign to:",
+      "baner": "Add banner image:",
+      "submit": "Submit"
+    }
+  },
+  "tasks": {
+    "header": "Tasks",
+    "states": {
+      "ready": "Ready",
+      "progress": "In progress",
+      "review": "Review",
+      "done": "Done"
+    },
+    "taskModal": {
+      "sections": {
+        "title": "Title",
+        "description": "Description",
+        "members": "Members",
+        "subtasks": "Subtasks",
+        "attachments": "Attachments"
+      },
+      "buttons": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "close": "Close",
+        "update": "Update"
+      }
+    }
+  }
+}

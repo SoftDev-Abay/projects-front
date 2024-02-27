@@ -25,29 +25,25 @@ const ChatPage = () => {
           `Failed to fetch user chats. Status: ${response.status}`
         );
       }
-      const data = await response.json();
+      const data = await response.data;
       setUserChats(data);
     } catch (error) {
       console.error("Error fetching user chats:", error);
     }
   };
 
-  console.log(messages);
+  console.log(activeChat);
 
   const getMessages = async () => {
     try {
-      const response = await axiosPrivate.post(
-        "https://projects-backend-mldr.onrender.com/chats/messages",
-        {
-          body: JSON.stringify({ chatID: activeChat._id, userID: user._id }),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (!response.ok) {
+      const response = await axiosPrivate.post("/chats/messages", {
+        chatID: activeChat._id, // Corrected body format
+        userID: user._id,
+      });
+      if (response.status !== 200) {
         throw new Error(`Failed to fetch messages. Status: ${response.status}`);
       }
-      const data = await response.json();
-      setMessages(data);
+      setMessages(response.data);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
@@ -99,16 +95,17 @@ const ChatPage = () => {
   const [message, setMessage] = useState("");
 
   const storeMessageOnDb = async () => {
-    const responce = await axiosPrivate.post("/messages", {
-      body: JSON.stringify({
+    try {
+      const response = await axiosPrivate.post("/messages", {
         chatroom_id: activeChat._id,
         sender_id: user._id,
         text: message,
         date: new Date().toISOString(),
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await responce.data;
+      });
+      console.log(response.data); // Log the response data or handle it as needed
+    } catch (error) {
+      console.error("Error storing message:", error);
+    }
   };
 
   const handleSendMessage = () => {
@@ -224,9 +221,12 @@ const ChatPage = () => {
                 <div>
                   <p className="user-name">
                     {activeChat
-                      ? activeChat.members.filter(
-                          (member) => member.username !== user.username
-                        )[0].username
+                      ? activeChat.name
+                          .split(",")
+                          .filter((name) => {
+                            return name !== user.username;
+                          })
+                          .join("")
                       : "Dummy user"}
                   </p>
                   <p className="user-role">
