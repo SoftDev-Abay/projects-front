@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import "./ChatsModal.scss";
 import { getAllUsers } from "../utility/getAllUsers";
 import { useAuthContext } from "../context/AuthContext";
-
+import { axiosPrivate } from "../api/axios";
 const ChatsModal = ({ modalHandlier, setChat, activeChatId, userChats }) => {
   const [search, setSearch] = useState("");
   const { user } = useAuthContext();
@@ -24,12 +24,11 @@ const ChatsModal = ({ modalHandlier, setChat, activeChatId, userChats }) => {
 
   const createChat = async (users) => {
     console.log({ users: [...users, user.username] });
-    const responce = await fetch("http://localhost:5555/chats", {
-      method: "POST",
+    const responce = await axiosPrivate.post("/chats", {
       body: JSON.stringify({ users: [...users, user.username] }),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await responce.json();
+    const data = await responce.data;
     setChat(data);
     if (data) {
       modalHandlier(false);

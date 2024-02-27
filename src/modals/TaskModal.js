@@ -10,11 +10,11 @@ import {
   FaPaperclip,
   FaCheckCircle,
 } from "react-icons/fa";
-import { axiosPrivate } from "../api/axios";
 import { FiCircle } from "react-icons/fi";
 import { ImageConfig } from "../config/ImageConfig";
 import { useEffect } from "react";
 import Subtasks from "../components/Subtasks";
+import { axiosPrivate } from "../api/axios";
 
 const TaskModal = ({ isOpen, modalHandlier }) => {
   const [task, setTask] = useState(null);
@@ -24,8 +24,8 @@ const TaskModal = ({ isOpen, modalHandlier }) => {
 
   const getTaskInfo = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5555/task/${isOpen}`);
-      const data = await res.json();
+      const res = await axiosPrivate(`/task/${isOpen}`);
+      const data = await res.data;
       setTask(data);
       setChangedSubtasks(data.subtasks);
     } catch (error) {
@@ -57,9 +57,7 @@ const TaskModal = ({ isOpen, modalHandlier }) => {
 
   const downloadFile = async (file_name) => {
     try {
-      const response = await fetch(
-        `http://localhost:5555/attachments/${file_name}`
-      );
+      const response = await axiosPrivate(`/attachments/${file_name}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

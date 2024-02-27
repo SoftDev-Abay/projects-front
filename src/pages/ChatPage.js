@@ -3,6 +3,7 @@ import { FaEllipsisV, FaPaperPlane } from "react-icons/fa";
 import ChatsModal from "../modals/ChatsModal";
 import { useAuthContext } from "../context/AuthContext";
 import socketIO from "socket.io-client";
+import { axiosPrivate } from "../api/axios";
 import "./ChatPage.scss";
 
 const socket = socketIO.connect("http://localhost:5555");
@@ -18,9 +19,7 @@ const ChatPage = () => {
   console.log(activeChat);
   const getUserChats = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5555/user_chatrooms/${user._id}`
-      );
+      const response = await axiosPrivate(`/user_chatrooms/${user._id}`);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch user chats. Status: ${response.status}`
@@ -37,11 +36,13 @@ const ChatPage = () => {
 
   const getMessages = async () => {
     try {
-      const response = await fetch("http://localhost:5555/chats/messages", {
-        method: "POST",
-        body: JSON.stringify({ chatID: activeChat._id, userID: user._id }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axiosPrivate.post(
+        "http://localhost:5555/chats/messages",
+        {
+          body: JSON.stringify({ chatID: activeChat._id, userID: user._id }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch messages. Status: ${response.status}`);
       }
@@ -98,8 +99,7 @@ const ChatPage = () => {
   const [message, setMessage] = useState("");
 
   const storeMessageOnDb = async () => {
-    const responce = await fetch("http://localhost:5555/messages", {
-      method: "POST",
+    const responce = await axiosPrivate.post("/messages", {
       body: JSON.stringify({
         chatroom_id: activeChat._id,
         sender_id: user._id,
@@ -108,7 +108,7 @@ const ChatPage = () => {
       }),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await responce.json();
+    const data = await responce.data;
   };
 
   const handleSendMessage = () => {

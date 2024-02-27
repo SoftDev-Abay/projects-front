@@ -27,9 +27,9 @@ const Login = () => {
         user_password: password,
       }),
     });
-    if (responce.status === 404 && responce.status === 404) {
+    if (responce.status != 200) {
       alert("User not found");
-    } else if (responce.status === 200) {
+    } else {
       const json_responce = await responce.json();
       setUser(json_responce.user);
       localStorage.setItem("user", JSON.stringify(json_responce.user));
